@@ -21,7 +21,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run unit tests
-        run: pytest -v
+        run: pytest -v tests/
 
       - name: Build Docker image
         run: docker build -t lab3-monitoring-devsecops:ci .
