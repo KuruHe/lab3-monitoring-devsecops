@@ -21,8 +21,9 @@ logger.setLevel(logging.INFO)
 logger.handlers.clear()
 
 # Docker Compose mounts ./logs to /logs.
-os.makedirs("/logs", exist_ok=True)
-file_handler = logging.FileHandler("/logs/app.log")
+LOG_FILE = os.getenv("LOG_FILE", "logs/app.log")
+os.makedirs(os.path.dirname(LOG_FILE) or ".", exist_ok=True)
+file_handler = logging.FileHandler(LOG_FILE)
 file_handler.setFormatter(JsonFormatter())
 logger.addHandler(file_handler)
 
